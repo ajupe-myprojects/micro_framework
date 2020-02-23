@@ -4,9 +4,6 @@ require_once __DIR__.'/settings.php';
 
 $container = new App\Container();
 
-//++++global variables++++//
-
-
 
 //++++ global functions++++//
 
