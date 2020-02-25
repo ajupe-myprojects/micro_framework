@@ -3,7 +3,7 @@
 $db_connections = [
     'type' => 'mysql',
     'host' => 'localhost',
-    'db_name' => 'test_framework',
+    'db_name' => 'framework_test',
     'charset' => 'utf8',
     'username' => 'root',
     'password' => ''
