@@ -3,10 +3,11 @@
 use App\Router;
 
 $routes = [
-    '/home' => 'home'
+    '/home' => 'home',
+    '/user' => 'user'
 ];
 
-function getRoute($routes)
+function getRoute($routes, $container)
 {
     $path_info = $_SERVER['PATH_INFO'] ?? '';
     
@@ -15,7 +16,7 @@ function getRoute($routes)
             Router::home();
         }else{
             $route = $routes[$path_info];
-            Router::$route();
+            Router::$route($container);
         }
     }else{
         Router::home();
