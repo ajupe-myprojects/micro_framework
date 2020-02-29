@@ -5,12 +5,6 @@ namespace App\helpers;
 
 class BaseHelper
 {
-    private $html_requests = [];
-
-    public function __construct()
-    {
-        $this->html_requests = $this->request();
-    }
 
     private function requestMethod() : string
     {
@@ -26,9 +20,32 @@ class BaseHelper
         return [];
     }
 
-    public function getRequests() 
+    public function getAllRequests() 
     {
-        $requests = $this->html_requests;
-        return $requests;
+        return $this->request();
+    }
+
+    public function getSingleRequest($strg)
+    {
+        $requests = $this->request();
+        if(isset($requests[$strg])){
+            return $requests[$strg];
+        }else{
+            return '!ERROR!';
+        }
+    }
+
+    public function parseTest($strg)
+    {
+        $pos = strpos($strg,'(');
+        if($pos && $pos > 0){
+            $func = trim(substr($strg,0,$pos));
+            $param = (int)substr($strg,$pos);
+        }else{
+            $func = trim($strg);
+            $param = null;
+        }
+        
+        return [$func,$param];
     }
 }

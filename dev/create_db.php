@@ -27,5 +27,8 @@ switch($type){
         break;
     default :
         echo 'Please add a correct parameter!';
+        echo 'Working parameters (atm):';
+        echo 'auth = create users table';
+        echo 'auth delete = delete users table';
 
 }
