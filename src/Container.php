@@ -15,6 +15,13 @@ class Container
         $this->instance = $pdo;
     }
 
+
+    /**
+     * Get a repository from the database
+     * 
+     * @param   string $repository The path and name of the repository to be created
+     * @return  sql_object
+     */
     public function create($repository)
     {
         return new $repository($this->instance);

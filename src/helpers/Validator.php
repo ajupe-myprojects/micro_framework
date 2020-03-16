@@ -41,24 +41,36 @@ class Validator extends BaseHelper
         }
     }
 
+    /**
+     * Requests and validates a specific input according to given parameters by calling predefined test functions
+     * 
+     * @param array  $array    should be like: ['input_name(POST/GET)', 'test parameters(max, min etc.)']
+     * @return string   the requested data or an error message
+     */
     public function validate($array)
     {
-        $value = getSingleRequest($array[0]);
-        $tests = $array[1];
-        foreach ($tests as $test) {
-            try{
-                $test = parseTest($test);
-                $test_function = $test[0];
-                $test_value = $test[1];
-                $result = $this->$test_function($value,$test_value);
-            }catch(Exception $e){
-                return 'Wrong test description!';
-                
+        if(getSingleRequest($array[0]) !== '!ERROR!'){
+
+            $value = getSingleRequest($array[0]);
+            $tests = $array[1];
+            foreach ($tests as $test) {
+                try{
+                    $test = parseTest($test);
+                    $test_function = $test[0];
+                    $test_value = $test[1];
+                    $result = $this->$test_function($value,$test_value);
+                }catch(Exception $e){
+                    return 'Wrong test description!';
+                    
+                }
+                if(!empty($result)){
+                    return '!ERROR! ='.$result;
+                }
             }
-            if(!empty($result)){
-                return $result;
-            }
+            return $value;
+
+        }else{
+            return '!ERROR!';
         }
-        return '!SUCCESS!';
     }
 }

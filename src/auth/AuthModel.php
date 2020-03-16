@@ -13,4 +13,5 @@ class AuthModel extends AbstractModel
     public $created_at;
     public $changed_at;
     public $user_token;
+    public $user_group;
 }
