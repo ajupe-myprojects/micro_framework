@@ -4,7 +4,8 @@ use App\Router;
 
 $routes = [
     '/home' => 'home',
-    '/user' => 'user'
+    '/user' => 'user',
+    '/stuff' => 'stuff'
 ];
 
 function getRoute($routes, $container)

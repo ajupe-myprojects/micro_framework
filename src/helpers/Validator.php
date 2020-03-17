@@ -7,7 +7,7 @@ class Validator extends BaseHelper
 {
     private function max($value,$test_value)
     {
-        if($value > (int)$test_value){
+        if(strlen($value) > (int)$test_value){
             return 'The entry should be no longer then '.$test_value.' characters';
         }else{
             return '';
@@ -16,7 +16,7 @@ class Validator extends BaseHelper
 
     private function min($value,$test_value)
     {
-        if($value < (int)$test_value){
+        if(strlen($value) < (int)$test_value){
             return 'The entry should be at least '.$test_value.' characters long';
         }else{
             return '';

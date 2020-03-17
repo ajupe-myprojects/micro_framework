@@ -21,3 +21,5 @@ switch($db_connections['type']){
         break;
 }
 
+//++global path root constant (with a stupid name)++
+define('FLROOT', $_SERVER['SCRIPT_NAME']);

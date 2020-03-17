@@ -16,6 +16,12 @@ class Router
     public function user($container)
     {
         $controller = new AuthController($container);
-        
+        $controller->index();
+    }
+
+    public function stuff($container)
+    {
+        $controller = new AuthController($container);
+        $controller->testUser();
     }
 }
