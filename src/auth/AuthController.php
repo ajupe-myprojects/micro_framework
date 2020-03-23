@@ -13,6 +13,7 @@ class AuthController extends AbstractController
     {
         $this->authRepository = $container->create("App\auth\AuthRepository");
     }
+    //+++test functions (
 
     public function index()
     {
@@ -25,4 +26,26 @@ class AuthController extends AbstractController
         $user = $this->authRepository->getByEmail('admin@admin.com');
         $this->render('content_home', ['user' => $user]);
     }
+
+    public function updateUser()
+    {
+        $this->authRepository->updateUserTable('2', ['username' => 'Moppelator', 'email' => 'test@test.de']);
+        $this->index();
+    }
+
+    public function newUser()
+    {
+        $contents = [
+            'email' => 'dada@dada.da',
+            'username' => 'Doof',
+            'password' => '$2y$10$UJgWzUSW1TYbND4M8mTlRO/8LYDAmQdPOUN7u/XcjfSNxCXu0d3fe',
+            'created_at' => '2020-03-23 12:26:31',
+            'changed_at' => '2020-03-23 12:26:31',
+            'user_token' => '',
+            'user_group' => 2
+        ];
+        $this->authRepository->createUser($contents);
+        $this->index();
+    }
+    //+++test functions )
 }

@@ -16,7 +16,7 @@ class AuthRepository extends AbstractRepository
 
 
 
-
+    //+++ test functions start +++
 
     public function getAllUsers()
     {
@@ -37,4 +37,21 @@ class AuthRepository extends AbstractRepository
         $user = $qry->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
+
+    public function updateUserTable($id, $updates_array)
+    {
+        $table = $this->getTableName();
+        $sql = SQLHelper::updateWhere($table, $updates_array, ['id' => $id]);
+        $qry = $this->pdo->prepare($sql);
+        $qry->execute();
+    }
+
+    public function createUser($contents)
+    {
+        $table = $this->getTableName();
+        $sql = SQLHelper::createInTable($table, $contents);
+        $qry = $this->pdo->prepare($sql);
+        $qry->execute();
+    }
+    //+++ test functions end+++
 }
