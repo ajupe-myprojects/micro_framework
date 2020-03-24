@@ -20,6 +20,32 @@ class SQLHelper
     }
 
     /**
+     * returns SQL-Code: get specified columns from a table and combine them with columns from another table which fit a prescribed condition
+     * 
+     * @param string $table
+     * @param array $contents   column name(s) on $table ['column_name', 'column_name']
+     * @param string $joined_table  name of the table to join
+     * @param array $joined_contents    column name(s) on $joined_table ['column_name', 'column_name']
+     * @param array $keywords   associative array ['column on $joined_table' => 'column on $table']
+     * @return string
+     */
+    public function getFromAndJoin($table, $contents, $joined_table, $joined_contents, $keywords)
+    {
+        $sql = "SELECT ";
+        foreach($contents as $content){
+            $sql .= "`$table`.`$content`, ";
+        }
+        foreach($joined_contents as $joined_content){
+            $sql .= "`$joined_table`.`$joined_content`, ";
+        }
+        $sql = substr($sql, 0, -2);
+        $sql .= " FROM `$table` ";
+        $sql .= "LEFT JOIN `$joined_table` ON `$joined_table`.`".array_key_first($keywords)."` = `$table`.`".$keywords[array_key_first($keywords)]."`";
+
+        return $sql;
+    }
+
+    /**
      * returns SQl-Code: all columns of a row where keywords are met (single row (first matching row))
      * 
      * @param string $table
@@ -100,4 +126,6 @@ class SQLHelper
         $sql .= ")";
         return $sql;
     }
+
+
 }

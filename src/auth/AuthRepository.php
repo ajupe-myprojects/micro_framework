@@ -53,5 +53,19 @@ class AuthRepository extends AbstractRepository
         $qry = $this->pdo->prepare($sql);
         $qry->execute();
     }
+
+    public function getAllUsersAndRoles()
+    {
+        $table = $this->getTableName();
+        $sql = SQLHelper::getFromAndJoin(
+            $table,
+            ['username', 'email'],
+            'groups',
+            ['group_name', 'right_create'],
+            ['group_id' => 'user_group']
+        );
+        var_dump($sql);
+        die;
+    }
     //+++ test functions end+++
 }

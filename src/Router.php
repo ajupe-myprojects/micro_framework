@@ -37,6 +37,14 @@ class Router
         $controller = new AuthController($container);
         $controller->newUser();
     }
+
+    public function join($container)
+    {
+        $controller = new AuthController($container);
+        $controller->joinTest();
+    }
+
+
     //+++ test functions end+++
 
 }

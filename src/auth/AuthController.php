@@ -47,5 +47,12 @@ class AuthController extends AbstractController
         $this->authRepository->createUser($contents);
         $this->index();
     }
+
+
+    public function joinTest()
+    {
+        $this->authRepository->getAllUsersAndRoles();
+        $this->index();
+    }
     //+++test functions )
 }
