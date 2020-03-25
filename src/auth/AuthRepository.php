@@ -4,6 +4,7 @@ namespace App\auth;
 
 use App\repositories\AbstractRepository;
 use App\helpers\SQLHelper;
+use App\helpers\SQLBuilder;
 
 use PDO;
 
@@ -64,6 +65,17 @@ class AuthRepository extends AbstractRepository
             ['group_name', 'right_create'],
             ['group_id' => 'user_group']
         );
+        var_dump($sql);
+        die;
+    }
+
+    public function buildSome()
+    {
+        $table = $this->getTableName();
+        $script = new SQLBuilder();
+        $script->selectFrom($table);
+        $script->where(['username' => 'Admin']);
+        $sql = $script->getSql();
         var_dump($sql);
         die;
     }

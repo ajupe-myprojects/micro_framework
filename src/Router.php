@@ -44,6 +44,12 @@ class Router
         $controller->joinTest();
     }
 
+    public function buildTest($container)
+    {
+        $controller = new AuthController($container);
+        $controller->builderTest();
+    }
+
 
     //+++ test functions end+++
 

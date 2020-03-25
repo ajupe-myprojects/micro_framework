@@ -8,7 +8,8 @@ $routes = [
     '/stuff' => 'stuff',
     '/update' => 'update',
     '/new_user' => 'newUser',
-    '/join' => 'join'
+    '/join' => 'join',
+    '/build_test' => 'buildTest'
 ];
 
 function getRoute($routes, $container)
